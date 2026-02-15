@@ -1,0 +1,70 @@
+@model PromptHub.Models.Prompt
+
+@{
+    ViewData["Title"] = "Prompt Details";
+}
+
+<h1>Prompt Details</h1>
+
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Title</dt>
+            <dd class="col-sm-9">@Model.Title</dd>
+
+            <dt class="col-sm-3">Description</dt>
+            <dd class="col-sm-9">@Model.Description</dd>
+
+            <dt class="col-sm-3">Content</dt>
+            <dd class="col-sm-9">
+                <div class="alert alert-light">
+                    <pre class="mb-0">@Model.Content</pre>
+                </div>
+            </dd>
+
+            <dt class="col-sm-3">Source URL</dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.SourceUrl))
+                {
+                    <a href="@Model.SourceUrl" target="_blank">@Model.SourceUrl</a>
+                }
+                else
+                {
+                    <span class="text-muted">N/A</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Category</dt>
+            <dd class="col-sm-9">
+                <span class="badge bg-primary">@Model.Category?.Name</span>
+            </dd>
+
+            <dt class="col-sm-3">Tags</dt>
+            <dd class="col-sm-9">
+                @if (Model.PromptTags != null && Model.PromptTags.Any())
+                {
+                    @foreach (var pt in Model.PromptTags)
+                    {
+                        <span class="badge bg-secondary me-1">@pt.Tag.Name</span>
+                    }
+                }
+                else
+                {
+                    <span class="text-muted">No tags</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Created At</dt>
+            <dd class="col-sm-9">@Model.CreatedAt.ToString("MMMM dd, yyyy hh:mm tt")</dd>
+
+            <dt class="col-sm-3">Updated At</dt>
+            <dd class="col-sm-9">@Model.UpdatedAt.ToString("MMMM dd, yyyy hh:mm tt")</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

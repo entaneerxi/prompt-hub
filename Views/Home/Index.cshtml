@@ -1,0 +1,75 @@
+﻿@model IEnumerable<PromptHub.Models.Prompt>
+
+@{
+    ViewData["Title"] = "Prompt Hub - AI Prompts Collection";
+}
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <h1 class="display-4">Prompt Hub</h1>
+        <p class="lead">รวบรวม AI Prompts จากทั่วโลก พร้อมระบบจัดหมวดหมู่</p>
+        <a asp-controller="Prompts" asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Add New Prompt
+        </a>
+        <a asp-controller="Prompts" asp-action="Index" class="btn btn-outline-secondary">
+            View All Prompts
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var prompt in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@prompt.Title</h5>
+                        <p class="card-text">
+                            @if (!string.IsNullOrEmpty(prompt.Description))
+                            {
+                                @(prompt.Description.Length > 100 ? prompt.Description.Substring(0, 100) + "..." : prompt.Description)
+                            }
+                        </p>
+                        <div class="mb-2">
+                            <span class="badge bg-primary">@prompt.Category?.Name</span>
+                        </div>
+                        @if (prompt.PromptTags != null && prompt.PromptTags.Any())
+                        {
+                            <div class="mb-2">
+                                @foreach (var pt in prompt.PromptTags.Take(3))
+                                {
+                                    <span class="badge bg-secondary me-1">@pt.Tag.Name</span>
+                                }
+                                @if (prompt.PromptTags.Count > 3)
+                                {
+                                    <span class="badge bg-light text-dark">+@(prompt.PromptTags.Count - 3) more</span>
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <small class="text-muted">Created: @prompt.CreatedAt.ToString("MMM dd, yyyy")</small>
+                        <div class="mt-2">
+                            <a asp-controller="Prompts" asp-action="Details" asp-route-id="@prompt.Id" class="btn btn-sm btn-outline-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-12">
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">No prompts yet!</h4>
+                <p>Start by adding your first prompt to the collection.</p>
+                <hr>
+                <p class="mb-0">
+                    <a asp-controller="Prompts" asp-action="Create" class="btn btn-primary">Add First Prompt</a>
+                </p>
+            </div>
+        </div>
+    }
+</div>
