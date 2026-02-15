@@ -17,11 +17,11 @@ namespace PromptHub.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,10 +32,10 @@ namespace PromptHub.Migrations
                 name: "Tags",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,15 +46,15 @@ namespace PromptHub.Migrations
                 name: "Prompts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    SourceUrl = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(type: "TEXT", maxLength: 255, nullable: false),
+                    Content = table.Column<string>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", maxLength: 500, nullable: true),
+                    SourceUrl = table.Column<string>(type: "TEXT", maxLength: 500, nullable: true),
+                    CategoryId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,8 +71,8 @@ namespace PromptHub.Migrations
                 name: "PromptTags",
                 columns: table => new
                 {
-                    PromptId = table.Column<int>(type: "int", nullable: false),
-                    TagId = table.Column<int>(type: "int", nullable: false)
+                    PromptId = table.Column<int>(type: "INTEGER", nullable: false),
+                    TagId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,14 +96,14 @@ namespace PromptHub.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 2, 15, 4, 9, 3, 855, DateTimeKind.Local).AddTicks(148), "การเงิน", "Finance" },
-                    { 2, new DateTime(2026, 2, 15, 4, 9, 3, 855, DateTimeKind.Local).AddTicks(416), "เทคโนโลยีสารสนเทศ", "IT/Technology" },
-                    { 3, new DateTime(2026, 2, 15, 4, 9, 3, 855, DateTimeKind.Local).AddTicks(418), "การตลาด", "Marketing" },
-                    { 4, new DateTime(2026, 2, 15, 4, 9, 3, 855, DateTimeKind.Local).AddTicks(420), "การศึกษา", "Education" },
-                    { 5, new DateTime(2026, 2, 15, 4, 9, 3, 855, DateTimeKind.Local).AddTicks(421), "การเขียนเชิงสร้างสรรค์", "Creative Writing" },
-                    { 6, new DateTime(2026, 2, 15, 4, 9, 3, 855, DateTimeKind.Local).AddTicks(423), "ธุรกิจ", "Business" },
-                    { 7, new DateTime(2026, 2, 15, 4, 9, 3, 855, DateTimeKind.Local).AddTicks(424), "สุขภาพ", "Health" },
-                    { 8, new DateTime(2026, 2, 15, 4, 9, 3, 855, DateTimeKind.Local).AddTicks(426), "ทั่วไป", "General" }
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "การเงิน", "Finance" },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "เทคโนโลยีสารสนเทศ", "IT/Technology" },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "การตลาด", "Marketing" },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "การศึกษา", "Education" },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "การเขียนเชิงสร้างสรรค์", "Creative Writing" },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "ธุรกิจ", "Business" },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "สุขภาพ", "Health" },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "ทั่วไป", "General" }
                 });
 
             migrationBuilder.CreateIndex(

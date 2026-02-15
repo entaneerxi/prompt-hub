@@ -92,7 +92,7 @@ Prompt Hub is a web application built with ASP.NET Core 8.0 that allows users to
 ### Prerequisites
 
 - .NET 8.0 SDK or later
-- Microsoft SQL Server (LocalDB, Express, or Full)
+- Database: SQLite (default, included) or Microsoft SQL Server (optional)
 - Visual Studio 2022 or Visual Studio Code (optional)
 
 ### Installation Steps
@@ -103,9 +103,34 @@ Prompt Hub is a web application built with ASP.NET Core 8.0 that allows users to
    cd prompt-hub
    ```
 
-2. **Update Database Connection String**
+2. **Install Dependencies**
+   ```bash
+   dotnet restore
+   ```
+
+3. **Apply Database Migrations**
+   ```bash
+   dotnet ef database update
+   ```
    
-   Open `appsettings.json` and update the connection string to match your SQL Server instance:
+   This will create the SQLite database (`prompthub.db`) and seed it with the default categories.
+
+4. **Run the Application**
+   ```bash
+   dotnet run
+   ```
+
+5. **Access the Application**
+   
+   Open your browser and navigate to:
+   - `https://localhost:5001` (HTTPS)
+   - `http://localhost:5000` (HTTP)
+
+### Using SQL Server (Optional)
+
+To use Microsoft SQL Server instead of SQLite:
+
+1. Open `appsettings.json` and update the connection string:
    ```json
    {
      "ConnectionStrings": {
@@ -114,28 +139,12 @@ Prompt Hub is a web application built with ASP.NET Core 8.0 that allows users to
    }
    ```
 
-3. **Install Dependencies**
-   ```bash
-   dotnet restore
-   ```
+2. The application will automatically detect the SQL Server connection string and use SQL Server instead of SQLite.
 
-4. **Apply Database Migrations**
+3. Run the migrations:
    ```bash
    dotnet ef database update
    ```
-   
-   This will create the database and seed it with the default categories.
-
-5. **Run the Application**
-   ```bash
-   dotnet run
-   ```
-
-6. **Access the Application**
-   
-   Open your browser and navigate to:
-   - `https://localhost:5001` (HTTPS)
-   - `http://localhost:5000` (HTTP)
 
 ## Project Structure
 

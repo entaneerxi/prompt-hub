@@ -35,15 +35,16 @@ public class ApplicationDbContext : DbContext
             .HasForeignKey(pt => pt.TagId);
 
         // Seed Categories
+        var seedDate = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         modelBuilder.Entity<Category>().HasData(
-            new Category { Id = 1, Name = "Finance", Description = "การเงิน", CreatedAt = DateTime.Now },
-            new Category { Id = 2, Name = "IT/Technology", Description = "เทคโนโลยีสารสนเทศ", CreatedAt = DateTime.Now },
-            new Category { Id = 3, Name = "Marketing", Description = "การตลาด", CreatedAt = DateTime.Now },
-            new Category { Id = 4, Name = "Education", Description = "การศึกษา", CreatedAt = DateTime.Now },
-            new Category { Id = 5, Name = "Creative Writing", Description = "การเขียนเชิงสร้างสรรค์", CreatedAt = DateTime.Now },
-            new Category { Id = 6, Name = "Business", Description = "ธุรกิจ", CreatedAt = DateTime.Now },
-            new Category { Id = 7, Name = "Health", Description = "สุขภาพ", CreatedAt = DateTime.Now },
-            new Category { Id = 8, Name = "General", Description = "ทั่วไป", CreatedAt = DateTime.Now }
+            new Category { Id = 1, Name = "Finance", Description = "การเงิน", CreatedAt = seedDate },
+            new Category { Id = 2, Name = "IT/Technology", Description = "เทคโนโลยีสารสนเทศ", CreatedAt = seedDate },
+            new Category { Id = 3, Name = "Marketing", Description = "การตลาด", CreatedAt = seedDate },
+            new Category { Id = 4, Name = "Education", Description = "การศึกษา", CreatedAt = seedDate },
+            new Category { Id = 5, Name = "Creative Writing", Description = "การเขียนเชิงสร้างสรรค์", CreatedAt = seedDate },
+            new Category { Id = 6, Name = "Business", Description = "ธุรกิจ", CreatedAt = seedDate },
+            new Category { Id = 7, Name = "Health", Description = "สุขภาพ", CreatedAt = seedDate },
+            new Category { Id = 8, Name = "General", Description = "ทั่วไป", CreatedAt = seedDate }
         );
     }
 }
